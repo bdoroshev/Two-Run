@@ -428,54 +428,6 @@
 	}
 </style>
 
-
-<script>
-	function startAnimation(containerId, delay) {
-	  const container = document.getElementById(containerId);
-	  const paths = container.querySelectorAll('.path');
-	  let currentIndex = 0;
-	  let isInitialDelay = true;
-  
-	  function changeColor() {
-		if (isInitialDelay) {
-		  setTimeout(() => {
-			isInitialDelay = false;
-			changeColor();
-		  }, 300); // Initial delay of 0.1 second
-		  return;
-		}
-  
-		if (currentIndex >= paths.length) {
-		  currentIndex = 0;
-		}
-  
-		paths.forEach((path, index) => {
-		  if (index === currentIndex) {
-			path.style.fill = '#FFFFFF';
-		  } else {
-			path.style.fill = '#029DFA';
-		  }
-		});
-  
-		if (currentIndex === 0 || currentIndex === paths.length - 1) {
-		  setTimeout(() => {
-			currentIndex++;
-		  }, 300); // Delay on the first and last element
-		} else {
-		  currentIndex++;
-		}
-	  }
-  
-	  setTimeout(() => {
-		setInterval(changeColor, 30); 
-	  }, delay);
-	}
-  
-	startAnimation('svg1', 500);    
-	startAnimation('svg2', 0);    
-	startAnimation('svg3', 0);   
-  </script>
-  
   
   
   

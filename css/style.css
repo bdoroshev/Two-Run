@@ -1654,6 +1654,13 @@ body.ie ._ibg img {
   margin-bottom: 100px;
 }
 
+.map-section__text-wrapper a {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
+}
+
 .button.button__large {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2474,7 +2481,9 @@ body.ie ._ibg img {
   .modern-section__image-wrapper {
     max-width: 45%;
   }
+}
 
+@media (min-width: 1750px) {
   .build-section__image {
     max-width: 1041px;
   }
@@ -2583,6 +2592,10 @@ body.ie ._ibg img {
 
   .market-section__flex-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .market-section__flex-content .body-large {
+    text-align: center;
   }
 
   .market-section__bottom-content {
