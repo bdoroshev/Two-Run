@@ -1,8 +1,9 @@
 let unlock = true;
-//=================
-//Menu
+
+// Menu
 let iconMenus = document.querySelectorAll(".icon-menu");
 let menuBodies = document.querySelectorAll(".header__menu");
+let menuLinks = document.querySelectorAll(".header__menu-link");
 
 if (iconMenus.length > 0) {
   let delay = 500;
@@ -16,16 +17,27 @@ if (iconMenus.length > 0) {
     });
   });
 }
+
+if (menuLinks.length > 0) {
+  menuLinks.forEach(menuLink => {
+    menuLink.addEventListener("click", function (e) {
+      menu_close();
+    });
+  });
+}
+
 function menu_close() {
+  let delay = 500;
   let iconMenus = document.querySelectorAll(".icon-menu");
   let menuBodies = document.querySelectorAll(".header__menu");
   iconMenus.forEach((iconMenu, index) => {
     iconMenu.classList.remove("active");
     menuBodies[index].classList.remove("active");
   });
+  body_lock_remove(delay);
 }
-//=================
-//BodyLock
+
+// BodyLock
 function body_lock(delay) {
   let body = document.querySelector("body");
   if (body.classList.contains('_lock')) {
@@ -34,6 +46,7 @@ function body_lock(delay) {
     body_lock_add(delay);
   }
 }
+
 function body_lock_remove(delay) {
   let body = document.querySelector("body");
   if (unlock) {
@@ -53,6 +66,7 @@ function body_lock_remove(delay) {
     }, delay);
   }
 }
+
 function body_lock_add(delay) {
   let body = document.querySelector("body");
   if (unlock) {
@@ -113,55 +127,67 @@ window.Element&&!Element.prototype.closest&&(Element.prototype.closest=function(
 
 
 function startAnimation(containerId, delay) {
-    const container = document.getElementById(containerId);
-    if (!container) {
-      console.error(`Element with ID ${containerId} not found.`);
+  const container = document.getElementById(containerId);
+  if (!container) {
+    console.error(`Element with ID ${containerId} not found.`);
+    return;
+  }
+
+  const paths = container.querySelectorAll('.path');
+  let currentIndex = 0;
+  let isInitialDelay = true;
+
+  function changeColor() {
+    if (isInitialDelay) {
+      setTimeout(() => {
+        isInitialDelay = false;
+        changeColor();
+      }, 300);
       return;
     }
-  
-    const paths = container.querySelectorAll('.path');
-    let currentIndex = 0;
-    let isInitialDelay = true;
-  
-    function changeColor() {
-      if (isInitialDelay) {
-        setTimeout(() => {
-          isInitialDelay = false;
-          changeColor();
-        }, 300);
-        return;
-      }
-  
-      if (currentIndex >= paths.length) {
-        currentIndex = 0;
-      }
-  
-      paths.forEach((path, index) => {
-        if (index === currentIndex) {
-          path.style.fill = '#FFFFFF';
-        } else {
-          path.style.fill = '#029DFA';
-        }
-      });
-  
-      if (currentIndex === 0 || currentIndex === paths.length - 1) {
-        setTimeout(() => {
-          currentIndex++;
-        }, 300);
-      } else {
-        currentIndex++;
-      }
+
+    if (currentIndex >= paths.length) {
+      currentIndex = 0;
     }
-  
-    setTimeout(() => {
-      setInterval(changeColor, 30);
-    }, delay);
+
+    paths.forEach((path, index) => {
+      if (index === currentIndex) {
+        path.style.fill = '#FFFFFF';
+      } else {
+        path.style.fill = '#029DFA';
+      }
+    });
+
+    if (currentIndex === 0 || currentIndex === paths.length - 1) {
+      setTimeout(() => {
+        currentIndex++;
+      }, 300);
+    } else {
+      currentIndex++;
+    }
   }
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    startAnimation('svg1', 500);    
-    startAnimation('svg2', 0);    
-    startAnimation('svg3', 0);  
+
+  setTimeout(() => {
+    setInterval(changeColor, 30);
+  }, delay);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  startAnimation('svg1', 500);
+  startAnimation('svg2', 0);
+  startAnimation('svg3', 0);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector(".header__index");
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY === 0) {
+      header.classList.add("header__index");
+    } else {
+      header.classList.remove("header__index");
+    }
   });
-  
-  
+});
+
+
