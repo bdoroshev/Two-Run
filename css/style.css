@@ -1075,17 +1075,6 @@ body.ie ._ibg img {
   width: 100%;
 }
 
-.footer__icons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  max-width: 130px;
-  width: 100%;
-}
-
 .footer__link {
   color: var(--White, #fff);
   position: relative;
@@ -2433,7 +2422,7 @@ section.solutions-section #solutions-section {
 }
 
 .path {
-  fill: #029DFA;
+  fill: #029dfa;
   -webkit-transition: fill 0.03s;
   -o-transition: fill 0.03s;
   transition: fill 0.03s;
@@ -2441,6 +2430,16 @@ section.solutions-section #solutions-section {
 
 .button--reverse {
   max-width: 88px;
+}
+
+#contact-section,
+#solutions-section,
+#modern-section,
+#about-section,
+#build-section,
+#consulting-section,
+#map-section {
+  scroll-margin-top: 80px;
 }
 
 @media (min-width: 768px) {
